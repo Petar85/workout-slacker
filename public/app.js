@@ -1,13 +1,11 @@
 const actionBtn = document.getElementById("action-button");
-// new item
+
 const makeNote = document.getElementById("make-new");
-// clear all items
-//const clear = document.getElementById("clear-all");
-// delete an item
+
 const results = document.getElementById("results");
 
 const status = document.getElementById("status");
-//const workName = document.getElementById("workout2");
+
 
 function clearForm() {
 
@@ -21,7 +19,7 @@ function clearResults() {
 }
 
 function updateFormFields(data) {
-    // workName.innerText = data.name;
+    
     document.getElementById('exercise-name').value= data.name;
     document.getElementById('description').value= data.description;
 
@@ -36,7 +34,7 @@ function updateFormFields(data) {
             document.getElementById('hard').checked = true;
             break;
           default:
-          // code block
+          
     }
 }
 
@@ -78,25 +76,6 @@ function newRecordSnippet(res) {
 
 getResults();
 
-// clear.addEventListener("click", function(e) {
-//     if (e.target.matches("#clear-all")) {
-//         element = e.target;
-//         data_id = element.getAttribute("data-id");
-//         fetch("/clearall", {
-//                 method: "delete"
-//             })
-//             .then(function(response) {
-//                 if (response.status !== 200) {
-//                     console.log("Looks like there was a problem. Status Code: " + response.status);
-//                     return;
-//                 }
-//                 clearForm();
-//             })
-//             .catch(function(err) {
-//                 console.log("Fetch Error :-S", err);
-//             });
-//     }
-// });
 
 results.addEventListener("click", function(e) {
     if (e.target.matches(".delete")) {
@@ -112,7 +91,7 @@ results.addEventListener("click", function(e) {
                 }
                 element.parentNode.remove();
                 clearForm();
-                //updateFormFields();
+                
                 let newButton = `
                     <button id='make-new'>Submit</button>`;
                 actionBtn.innerHTML = newButton;

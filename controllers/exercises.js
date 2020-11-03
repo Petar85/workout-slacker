@@ -16,13 +16,12 @@ router.post("/submit", ({body}, res) => {
       });
   });
 
-  //get route to find by id
+  
   router.get("/exercises/:id", (req, res) => {
-    //   console.log('crb testing:  findById('+req.params.id+')');
+    
    db.Exercises.findById(req.params.id)
    .then(result => {
-    // console.log('crb testing:  result:'+result);
- 
+    
        if(!result) {
            return res.status(404).send({
                message: "Exercise not found with id " + req.params.id
@@ -41,15 +40,15 @@ router.post("/submit", ({body}, res) => {
    });
  });
  
- // Update an exercise identified by the noteId in the request
+ 
  router.put("/exercises/:id", (req, res) => {
-   // Validate Request
+   
    if(!req.body.name) {
        return res.status(400).send({
            message: "exercise name can not be empty"
        });
    }
-   // Find note and update it with the request body
+   
    db.Exercises.findByIdAndUpdate(req.params.id, {
        name: req.body.name || "Untitled exercise",
        description: req.body.description,
@@ -75,7 +74,7 @@ router.post("/submit", ({body}, res) => {
    });
  });
  
- // Delete a note with the specified noteId in the request
+ 
  router.delete("/exercises/:id", (req, res) => {
    let exerciseId = req.params.id;
    db.Exercises.findByIdAndRemove(req.params.id)
