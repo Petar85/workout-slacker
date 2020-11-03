@@ -14,3 +14,30 @@ app.use(express.static("public"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/workout_slackerdb',
+ { useNewUrlParser: true, useUnifiedTopology: true });
+ mongoose.connection
+  .once('open', () => console.log('Good to go!'))
+  .on('error', (error) => {
+      console.warn('Error', error);
+  });
+
+db.Workouts.create({name: "Ultimate Workout Plan"})
+  .then(dbWorkouts => {
+    console.log('log from inside dbWorkouts.create '+dbWorkouts);
+  })
+  .catch( ({message}) => {
+    console.log('this is the error:' +message);
+  });
+
+  app.get("/", (req,res) =>{
+    console.log('GET root route');
+    res.sendFile(path.join(__dirname, "./public/index.html"));
+  })
+  app.use(require("./controllers/exercises"));
+  app.use(require("./controllers/workout"));
+  
+  app.listen(PORT, () => {
+    console.log(`App running on port ${PORT}!`);
+  });
