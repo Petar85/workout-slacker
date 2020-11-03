@@ -207,7 +207,7 @@ actionBtn.addEventListener("click", function(e) {
                     name: document.getElementById("exercise-name").value,
                     description: document.getElementById("description").value,
                     difficulty: diff
-                })
+                }),
             })
             .then(result => result.json().then(newEx => {
                 location.reload();
